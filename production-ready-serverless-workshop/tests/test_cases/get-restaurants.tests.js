@@ -1,6 +1,5 @@
 const { init } = require('../steps/init')
 const when = require('../steps/when')
-console.log = jest.fn()
 
 describe(`When we invoke the GET /restaurants endpoint`, () => {
   beforeAll(async () => await init())
