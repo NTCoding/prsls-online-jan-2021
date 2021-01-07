@@ -64,7 +64,7 @@ This function also uses the same Cognito User Tool for authorization, as it'll b
 ```yml
 - Effect: Allow
   Action: events:PutEvents
-  Resource: "*"
+  Resource: !GetAtt EventBus.Arn
 ```
 
 Notice that we're using `"*"` here as `Resource`. Unfortunately, this is one of the shortcomings with `EventBridge` right now. That it doesn't support more granular permissions for `PutEvents` actions. Which means, anyone with this IAM permission would be able to publish events to ANY event bus in your AWS account.

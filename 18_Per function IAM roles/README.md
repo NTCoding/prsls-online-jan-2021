@@ -88,7 +88,7 @@ iamRoleStatements:
 iamRoleStatements:
   - Effect: Allow
     Action: events:PutEvents
-    Resource: "*"
+    Resource: !GetAtt EventBus.Arn
 ```
 
 6. Finally, give the `notify-restaurant` function its own IAM role statements
@@ -97,7 +97,7 @@ iamRoleStatements:
 iamRoleStatements:
   - Effect: Allow
     Action: events:PutEvents
-    Resource: "*"
+    Resource: !GetAtt EventBus.Arn
   - Effect: Allow
     Action: sns:Publish
     Resource: !Ref RestaurantNotificationTopic
