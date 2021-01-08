@@ -1,5 +1,6 @@
 const middy = require('@middy/core')
 const ssm = require('@middy/ssm')
+const Log = require('@dazn/lambda-powertools-logger')
 
 const DocumentClient = require('aws-sdk/clients/dynamodb').DocumentClient
 const dynamodb = new DocumentClient()
@@ -8,14 +9,19 @@ const { serviceName, stage } = process.env
 const tableName = process.env.restaurants_table
 
 const getRestaurants = async (count) => {
-  console.log(`fetching ${count} restaurants from ${tableName}...`)
+  Log.debug('getting restaurants from DynamoDB...', {
+    count,
+    tableName
+  })
   const req = {
     TableName: tableName,
     Limit: count
   }
 
   const resp = await dynamodb.scan(req).promise()
-  console.log(`found ${resp.Items.length} restaurants`)
+  Log.debug('found restaurants', {
+    count: resp.Items.length
+  })
   return resp.Items
 }
 

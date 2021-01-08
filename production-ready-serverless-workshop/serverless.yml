@@ -3,6 +3,10 @@ service: workshop-${self:custom.name}
 custom:
   name: nick
   email: nick@ntcoding.co.uk
+  stage: ${opt:stage, self:provider.stage}
+  logLevel:
+    prod: INFO
+    default: DEBUG
 
 provider:
   name: aws
@@ -10,6 +14,7 @@ provider:
   environment:
     serviceName: ${self:service}
     stage: ${self:provider.stage}
+    LOG_LEVEL: ${self:custom.logLevel.${self:custom.stage}, self:custom.logLevel.default}
 
 functions:
   get-index:
