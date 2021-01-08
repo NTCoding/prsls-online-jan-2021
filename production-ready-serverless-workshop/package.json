@@ -23,6 +23,7 @@
     "rxjs": "^6.6.3",
     "serverless": "^2.17.0",
     "serverless-export-env": "^1.4.0",
+    "serverless-iam-roles-per-function": "^3.1.0-d68046e",
     "serverless-pseudo-parameters": "^2.5.0"
   },
   "dependencies": {
