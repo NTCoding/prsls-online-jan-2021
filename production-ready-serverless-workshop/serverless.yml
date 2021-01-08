@@ -5,8 +5,8 @@ custom:
   email: nick@ntcoding.co.uk
   stage: ${opt:stage, self:provider.stage}
   logLevel:
-    prod: INFO
-    default: DEBUG
+    prod: ERROR
+    default: INFO
 
 provider:
   name: aws
